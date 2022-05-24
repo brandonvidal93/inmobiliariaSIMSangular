@@ -4,8 +4,14 @@
 
 export const environment = {
   production: false,
-  endpoint: '/prospectos-vida'
+  endpoint: 'http://localhost:3001'
 };
+
+
+// export const environment = {
+//   production: false,
+//   endpoint: '/prospectos-vida'
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file

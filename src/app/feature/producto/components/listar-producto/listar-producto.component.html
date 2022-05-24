@@ -1,8 +1,25 @@
-<p>listar-producto works!</p>
-<div id="productos">
-  <ul class="productos">
-    <li *ngFor="let item of listaProductos | async">
-      <span>{{item.id}}</span> {{item.descripcion}}
-    </li>
-  </ul>
+<div class="container mt-4" id="productos">
+  <h1>Lista de Inmuebles</h1>
+
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let item of listaProductos | async">
+      <div class="card">
+        <img src={{item.imgCover}} class="card-img-top imgCover">
+        <div class="card-body">
+          <h5 class="card-title">{{item.type == 1 ? 'Apartamento' : 'Casa'}} - {{item.id}}</h5>
+          <h6 class="card-text mb-3">Sector {{item.ubication}}</h6>
+          
+          <p class="card-text mb-0">Área Total: {{item.totalArea}} mt<sup>2</sup></p>
+          <p class="card-text mb-0">Habitaciones: {{item.rooms}}</p>
+          <p class="card-text mb-2">Baños: {{item.bathrooms}}</p>
+
+          <p class="card-text mb-0">Antes: <del>{{item.price | currency: 'USD'}}</del></p>
+          <h5 class="card-text text-primary mb-3">Ahora: {{item.priceDiscount  | currency: 'USD'}}</h5>
+
+          <a class="btn btn-warning">Editar</a>
+          <a class="btn btn-danger ms-3">Borrar</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
