@@ -1,7 +1,7 @@
 {
   "buildings": [
     {
-      "id": 1,
+      "id": "1",
       "type": 2,
       "totalArea": 100,
       "builtArea": 50,
@@ -20,6 +20,27 @@
       "pricePolicy": 0,
       "imgCover": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
       "description": ""
+    },
+    {
+      "id": "9696",
+      "type": "2",
+      "totalArea": 250,
+      "builtArea": 200,
+      "antique": "2",
+      "levelId": 3,
+      "ubication": "4",
+      "address": "Carrera 51B",
+      "rooms": 3,
+      "office": "",
+      "bathrooms": 2,
+      "garages": "",
+      "floors": 2,
+      "price": 240000000,
+      "priceDiscount": 240000000,
+      "priceAdmon": 250000,
+      "pricePolicy": 250000,
+      "imgCover": "https://images.unsplash.com/photo-1653463174226-76848e041450?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687",
+      "descripcion": "Hermoso apartamento"
     }
   ]
 }

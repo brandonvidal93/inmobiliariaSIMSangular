@@ -31,7 +31,7 @@ describe('ProductoService', () => {
     const dummyProductos = [
       new Producto('1', 'Producto 1'), new Producto('2', 'Producto 2')
     ];
-    service.consultar().subscribe(productos => {
+    service.consultarInmuebles().subscribe(productos => {
       expect(productos.length).toBe(2);
       expect(productos).toEqual(dummyProductos);
     });

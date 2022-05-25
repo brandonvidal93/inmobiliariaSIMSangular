@@ -15,7 +15,7 @@ export class ListarProductoComponent implements OnInit {
   constructor(protected productoService: ProductoService) { }
 
   ngOnInit() {
-    this.listaProductos = this.productoService.consultar();
+    this.listaProductos = this.productoService.consultarInmuebles();
   }
 
 }

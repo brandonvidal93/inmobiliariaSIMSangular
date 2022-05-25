@@ -53,7 +53,7 @@ describe('CrearProductoComponent', () => {
     component.productoForm.controls.descripcion.setValue('Producto test');
     expect(component.productoForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.crear();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect
