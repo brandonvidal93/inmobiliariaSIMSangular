@@ -14,20 +14,65 @@ const numberRegEx = /\-?\d*\.?\d{1,2}/;
 })
 export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
+
+  ubication: string;
   price: number;
   priceDiscount: number;
+  priceAdmon: number;
+  pricePolicy: number;
+  isApartment: boolean;
 
   // , private router: Router
   constructor(protected productoServices: ProductoService) {
+    this.ubication = '';
     this.price = 0;
     this.priceDiscount = 0;
+    this.priceAdmon = 0;
+    this.pricePolicy = 0;
+    this.isApartment = false;
   }
 
   ngOnInit() {
     this.construirFormularioProducto();
   }
 
+  handleUbication(event) {
+    this.ubication = event.target.value;
+  } 
+
+  handleTypeBuilding(event) {
+    if (event.target.value === '1') {
+      this.isApartment = true;
+    } else {
+      this.isApartment = false;
+    }
+  }
+
+  handleChangePrice(event) {
+    this.price = parseInt(event.target.value);
+
+    // Segun el sector
+    
+    this.priceDiscount = this.price - (this.price * 0.1);
+
+    // Si es aparmento
+    if (this.isApartment) {
+      this.priceAdmon = this.priceDiscount - (this.priceDiscount * 0.999);
+    } else {
+      this.priceAdmon = 0;
+    }
+
+    // Por antiguedad
+    this.pricePolicy = this.priceDiscount - (this.priceDiscount * 0.99);
+  }
+
   crear() {
+    this.productoForm.value.priceDiscount = this.priceDiscount;
+    this.productoForm.value.priceAdmon = this.priceAdmon;
+    this.productoForm.value.pricePolicy = this.pricePolicy;
+
+
+
     console.log(this.productoForm.value);
     
     // this.productoServices.guardar(this.productoForm.value).subscribe(() => {
@@ -37,12 +82,6 @@ export class CrearProductoComponent implements OnInit {
     //   // Redireccionar a la lista de productos
     //   this.router.navigateByUrl('/buildings/listar');
     // });
-  }
-
-  handleChangePrice(event) {
-    this.price = event.target.value;
-    
-    console.log(this.price);
   }
 
   private construirFormularioProducto() {
@@ -55,11 +94,11 @@ export class CrearProductoComponent implements OnInit {
       levelId         : new FormControl('', [Validators.required]),
       ubication       : new FormControl('', [Validators.required]),
       address         : new FormControl('', [Validators.required]),
-      rooms           : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      office          : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      bathrooms       : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      garages         : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      floors          : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
+      rooms           : new FormControl('', [Validators.required]),
+      office          : new FormControl('', [Validators.required]),
+      bathrooms       : new FormControl('', [Validators.required]),
+      garages         : new FormControl('', [Validators.required]),
+      floors          : new FormControl('', [Validators.required]),
       price           : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
       priceDiscount   : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
       priceAdmon      : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
