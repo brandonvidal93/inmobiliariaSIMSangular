@@ -15,7 +15,8 @@ const numberRegEx = /\-?\d*\.?\d{1,2}/;
 export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
 
-  ubication: string;
+  ubication: number;
+  antiqueId: number;
   price: number;
   priceDiscount: number;
   priceAdmon: number;
@@ -24,7 +25,8 @@ export class CrearProductoComponent implements OnInit {
 
   // , private router: Router
   constructor(protected productoServices: ProductoService) {
-    this.ubication = '';
+    this.ubication = 0;
+    this.antiqueId = 0;
     this.price = 0;
     this.priceDiscount = 0;
     this.priceAdmon = 0;
@@ -36,43 +38,65 @@ export class CrearProductoComponent implements OnInit {
     this.construirFormularioProducto();
   }
 
-  handleUbication(event) {
-    this.ubication = event.target.value;
-  } 
-
   handleTypeBuilding(event) {
     if (event.target.value === '1') {
       this.isApartment = true;
     } else {
       this.isApartment = false;
     }
+
+    this.updatePrices();
   }
+
+  handleChangeAntique(event) {
+    this.antiqueId = parseInt(event.target.value);
+
+    this.updatePrices();
+  }
+
+  handleUbication(event) {
+    this.ubication = parseInt(event.target.value);
+
+    this.updatePrices();
+  } 
 
   handleChangePrice(event) {
     this.price = parseInt(event.target.value);
 
+    this.updatePrices();
+  }
+
+  updatePrices() {
     // Segun el sector
-    
-    this.priceDiscount = this.price - (this.price * 0.1);
+    if (this.ubication >= 1 && this.ubication <= 7) {
+      this.priceDiscount = this.price - (this.price * 0.1);
+    } else if (this.ubication >= 8 && this.ubication <= 10) {
+      this.priceDiscount = this.price - (this.price * 0.15);
+    } else if (this.ubication >= 11 && this.ubication <= 13) {
+      this.priceDiscount = this.price - (this.price * 0.2);
+    } else {
+      this.priceDiscount = this.price - (this.price * 0.25);
+    }
 
     // Si es aparmento
     if (this.isApartment) {
-      this.priceAdmon = this.priceDiscount - (this.priceDiscount * 0.999);
+      this.priceAdmon = this.priceDiscount * 0.001;
     } else {
       this.priceAdmon = 0;
     }
 
     // Por antiguedad
-    this.pricePolicy = this.priceDiscount - (this.priceDiscount * 0.99);
+    if (this.antiqueId >= 2) {
+      this.pricePolicy = this.priceDiscount * 0.05;
+    } else {
+      this.pricePolicy = 0;
+    }
   }
 
   crear() {
     this.productoForm.value.priceDiscount = this.priceDiscount;
     this.productoForm.value.priceAdmon = this.priceAdmon;
     this.productoForm.value.pricePolicy = this.pricePolicy;
-
-
-
     console.log(this.productoForm.value);
     
     // this.productoServices.guardar(this.productoForm.value).subscribe(() => {
@@ -90,7 +114,7 @@ export class CrearProductoComponent implements OnInit {
       type            : new FormControl('', [Validators.required]),
       totalArea       : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
       builtArea       : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      antique         : new FormControl('', [Validators.required]),
+      antiqueId       : new FormControl('', [Validators.required]),
       levelId         : new FormControl('', [Validators.required]),
       ubication       : new FormControl('', [Validators.required]),
       address         : new FormControl('', [Validators.required]),

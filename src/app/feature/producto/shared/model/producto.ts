@@ -3,7 +3,7 @@ export class Producto {
     type: string;
     totalArea: number;
     builtArea: number;
-    antique: string;
+    antiqueId: string;
     levelId: string;
     ubication: string;
     address: string;
@@ -19,12 +19,12 @@ export class Producto {
     imgCover: string;
     descripcion: string;
 
-    constructor(id: string, type: string, totalArea: number, builtArea: number, antique: string, levelId: string, ubication: string, address: string, rooms: string, office: string, bathrooms: string, garages: string, floors: string, price: number, priceDiscount: number, priceAdmon: number, pricePolicy: number, imgCover: string ,descripcion: string) {
+    constructor(id: string, type: string, totalArea: number, builtArea: number, antiqueId: string, levelId: string, ubication: string, address: string, rooms: string, office: string, bathrooms: string, garages: string, floors: string, price: number, priceDiscount: number, priceAdmon: number, pricePolicy: number, imgCover: string ,descripcion: string) {
         this.id = id;
         this.type = type;
         this.totalArea = totalArea;
         this.builtArea = builtArea;
-        this.antique = antique;
+        this.antiqueId = antiqueId;
         this.levelId = levelId;
         this.ubication = ubication;
         this.address = address;

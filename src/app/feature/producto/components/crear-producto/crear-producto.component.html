@@ -33,7 +33,7 @@
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-4">
             <label class="mb-1 labelForm" for="antique">Antigüedad</label>
-            <select class="form-select" id="antique" name="antique" formControlName="antique">
+            <select class="form-select" id="antique" name="antique" formControlName="antiqueId" (change)="handleChangeAntique($event)">
               <option value="1">0 a 5 años</option>
               <option value="2">6 a 10 años</option>
               <option value="3">11 a 15 años</option>
