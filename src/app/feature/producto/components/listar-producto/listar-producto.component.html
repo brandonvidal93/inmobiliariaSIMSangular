@@ -1,7 +1,8 @@
 <div class="container" id="productos">
   <h1 class="mt-4 mb-3">Lista de Inmuebles</h1>
-
   <div class="row g-4">
+    <app-spinner *ngIf="isLoading"></app-spinner>
+
     <div class="col-md-4" *ngFor="let item of listaProductos">
       <div class="card">
         <img src={{item.imgCover}} class="card-img-top imgCover">

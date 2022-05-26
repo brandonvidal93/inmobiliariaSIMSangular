@@ -11,12 +11,17 @@ import { Inmueble } from '@producto/shared/model/inmueble';
 export class ListarInmuebleComponent implements OnInit {
   public listaProductos: Inmueble[];
 
-  constructor(protected productoService: InmuebleService) { }
+  isLoading: boolean;
+
+  constructor(protected productoService: InmuebleService) {
+    this.isLoading = true;
+  }
 
   listarInmuebles() {
     this.productoService.consultarInmuebles().subscribe(data => {
+      this.isLoading = false;
+
       this.listaProductos = data;
-      console.log(this.listaProductos);
     });
   }
 

@@ -49,6 +49,31 @@
       "imgCover": "https://images.unsplash.com/photo-1653463174226-76848e041450?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687",
       "descripcion": "Hermoso Apto",
       "id": 2
+    },
+    {
+      "type": "2",
+      "totalArea": 120,
+      "builtArea": 120,
+      "antiqueId": "2",
+      "levelId": 3,
+      "ubication": {
+        "id": "4",
+        "discount": 0.1,
+        "name": "4 - Aranjuez"
+      },
+      "address": "Carerra 51B #96-96",
+      "rooms": 3,
+      "office": "",
+      "bathrooms": 2,
+      "garages": "",
+      "floors": 1,
+      "price": 250000000,
+      "priceDiscount": 225000000,
+      "priceAdmon": 0,
+      "pricePolicy": 11250000,
+      "imgCover": "https://images.unsplash.com/photo-1653427602884-15ea63290719?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
+      "descripcion": "Ubicada cerca del metro",
+      "id": 3
     }
   ]
 }
