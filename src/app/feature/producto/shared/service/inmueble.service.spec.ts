@@ -1,35 +1,35 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ProductoService } from './producto.service';
+import { InmuebleService } from './inmueble.service';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
-import { Producto } from '../model/producto';
+import { Inmueble } from '../model/inmueble';
 import { HttpResponse } from '@angular/common/http';
 
-describe('ProductoService', () => {
+describe('InmuebleService', () => {
   let httpMock: HttpTestingController;
-  let service: ProductoService;
+  let service: InmuebleService;
   const apiEndpointProductoConsulta = `${environment.endpoint}/tiposFamilia`;
   const apiEndpointProductos = `${environment.endpoint}/productos`;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ProductoService, HttpService]
+      providers: [InmuebleService, HttpService]
     });
     httpMock = injector.inject(HttpTestingController);
-    service = TestBed.inject(ProductoService);
+    service = TestBed.inject(InmuebleService);
   });
 
   it('should be created', () => {
-    const productService: ProductoService = TestBed.inject(ProductoService);
+    const productService: InmuebleService = TestBed.inject(InmuebleService);
     expect(productService).toBeTruthy();
   });
 
   it('deberia listar productos', () => {
     const dummyProductos = [
-      new Producto('1', 'Producto 1'), new Producto('2', 'Producto 2')
+      new Inmueble('1', 'Inmueble 1'), new Inmueble('2', 'Inmueble 2')
     ];
     service.consultarInmuebles().subscribe(productos => {
       expect(productos.length).toBe(2);
@@ -41,7 +41,7 @@ describe('ProductoService', () => {
   });
 
   it('deberia crear un producto', () => {
-    const dummyProducto = new Producto('1', 'Producto 1');
+    const dummyProducto = new Inmueble('1', 'Inmueble 1');
     service.guardar(dummyProducto).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
@@ -51,7 +51,7 @@ describe('ProductoService', () => {
   });
 
   it('deberia eliminar un producto', () => {
-    const dummyProducto = new Producto('1', 'Producto 1');
+    const dummyProducto = new Inmueble('1', 'Inmueble 1');
     service.eliminar(dummyProducto).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

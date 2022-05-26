@@ -1,22 +1,22 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { CrearProductoComponent } from './crear-producto.component';
+import { CrearInmuebleComponent } from './crear-producto.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProductoService } from '../../shared/service/producto.service';
+import { InmuebleService } from '../../shared/service/inmueble.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('CrearProductoComponent', () => {
-  let component: CrearProductoComponent;
-  let fixture: ComponentFixture<CrearProductoComponent>;
-  let productoService: ProductoService;
+describe('CrearInmuebleComponent', () => {
+  let component: CrearInmuebleComponent;
+  let fixture: ComponentFixture<CrearInmuebleComponent>;
+  let productoService: InmuebleService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearProductoComponent ],
+      declarations: [ CrearInmuebleComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -24,15 +24,15 @@ describe('CrearProductoComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ProductoService, HttpService],
+      providers: [InmuebleService, HttpService],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearProductoComponent);
+    fixture = TestBed.createComponent(CrearInmuebleComponent);
     component = fixture.componentInstance;
-    productoService = TestBed.inject(ProductoService);
+    productoService = TestBed.inject(InmuebleService);
     spyOn(productoService, 'guardar').and.returnValue(
       of(true)
     );
@@ -50,7 +50,7 @@ describe('CrearProductoComponent', () => {
   it('Registrando producto', () => {
     expect(component.productoForm.valid).toBeFalsy();
     component.productoForm.controls.id.setValue('001');
-    component.productoForm.controls.descripcion.setValue('Producto test');
+    component.productoForm.controls.descripcion.setValue('Inmueble test');
     expect(component.productoForm.valid).toBeTruthy();
 
     component.crear();

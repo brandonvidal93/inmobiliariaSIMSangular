@@ -1,4 +1,4 @@
-export class Producto {
+export class Inmueble {
     id: number;
     type: string;
     totalArea: number;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../shared/service/producto.service';
+import { InmuebleService } from '../../shared/service/inmueble.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { dataType, dataAntique, dataUbication } from '../../shared/utils/dataSelect';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 500;
   templateUrl: './crear-producto.component.html',
   styleUrls: ['./crear-producto.component.scss']
 })
-export class CrearProductoComponent implements OnInit {
+export class CrearInmuebleComponent implements OnInit {
   productoForm: FormGroup;
 
   dataType: { id: number; name: string }[];
@@ -29,7 +29,7 @@ export class CrearProductoComponent implements OnInit {
   pricePolicy: number;
   isApartment: boolean;
 
-  constructor(protected productoServices: ProductoService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(protected productoServices: InmuebleService, private formBuilder: FormBuilder, private router: Router) {
     this.dataType = dataType;
     this.dataAntique = dataAntique;
     this.dataUbication = dataUbication;
@@ -66,8 +66,6 @@ export class CrearProductoComponent implements OnInit {
   }
 
   handleUbication(event) {
-    console.log(event.target.value);
-    
     let ubicationInfo: string = event.target.value.split('_');
     
     this.ubicationId = ubicationInfo[0];
@@ -111,13 +109,10 @@ export class CrearProductoComponent implements OnInit {
     this.productoForm.value.priceDiscount = this.priceDiscount;
     this.productoForm.value.priceAdmon = this.priceAdmon;
     this.productoForm.value.pricePolicy = this.pricePolicy;
-
-    console.log(this.productoForm.value);
-    
     
     this.productoServices.guardar(this.productoForm.value).subscribe(() => {
       // Mostrar el mensaje de éxito
-      alert('Producto creado con éxito');
+      alert('Inmueble creado con éxito');
 
       // Redireccionar a la lista de productos
       this.router.navigateByUrl('/buildings/listar');
@@ -147,23 +142,3 @@ export class CrearProductoComponent implements OnInit {
     });
   }
 }
-
-
-// type            : ['', Validators.required],
-//       totalArea       : ['', [Validators.required]],
-//       builtArea       : ['', [Validators.required]],
-//       antiqueId       : ['', Validators.required],
-//       levelId         : ['', [Validators.required]],
-//       ubication       : ['', Validators.required],
-//       address         : ['', Validators.required],
-//       rooms           : ['', [Validators.required]],
-//       office          : [''],
-//       bathrooms       : ['', [Validators.required]],
-//       garages         : [''],
-//       floors          : ['', [Validators.required]],
-//       price           : ['', [Validators.required]],
-//       priceDiscount   : [''],
-//       priceAdmon      : [''],
-//       pricePolicy     : [''],
-//       imgCover        : ['', Validators.required],
-//       descripcion     : ['', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]

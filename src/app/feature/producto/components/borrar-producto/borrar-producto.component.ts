@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './borrar-producto.component.html',
   styleUrls: ['./borrar-producto.component.scss']
 })
-export class BorrarProductoComponent implements OnInit {
+export class BorrarInmuebleComponent implements OnInit {
 
 
   constructor() { }

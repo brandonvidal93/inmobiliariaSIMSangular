@@ -1,37 +1,37 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { ListarProductoComponent } from './listar-producto.component';
+import { ListarInmuebleComponent } from './listar-producto.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProductoService } from '../../shared/service/producto.service';
-import { Producto } from '../../shared/model/producto';
+import { InmuebleService } from '../../shared/service/inmueble.service';
+import { Inmueble } from '../../shared/model/inmueble';
 import { HttpService } from 'src/app/core/services/http.service';
 
-describe('ListarProductoComponent', () => {
-  let component: ListarProductoComponent;
-  let fixture: ComponentFixture<ListarProductoComponent>;
-  let productoService: ProductoService;
-  const listaProductos: Producto[] = [new Producto('1', 'Producto 1'), new Producto('2', 'Producto 2')];
+describe('ListarInmuebleComponent', () => {
+  let component: ListarInmuebleComponent;
+  let fixture: ComponentFixture<ListarInmuebleComponent>;
+  let productoService: InmuebleService;
+  const listaProductos: Inmueble[] = [new Inmueble('1', 'Inmueble 1'), new Inmueble('2', 'Inmueble 2')];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ListarProductoComponent],
+      declarations: [ListarInmuebleComponent],
       imports: [
         CommonModule,
         HttpClientModule,
         RouterTestingModule
       ],
-      providers: [ProductoService, HttpService]
+      providers: [InmuebleService, HttpService]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarProductoComponent);
+    fixture = TestBed.createComponent(ListarInmuebleComponent);
     component = fixture.componentInstance;
-    productoService = TestBed.inject(ProductoService);
+    productoService = TestBed.inject(InmuebleService);
     spyOn(productoService, 'consultar').and.returnValue(
       of(listaProductos)
     );

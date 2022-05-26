@@ -3,7 +3,7 @@ import { NavbarPage } from '../page/navbar/navbar.po';
 import { AppPage } from '../app.po';
 import { ProductoPage } from '../page/producto/producto.po';
 
-describe('workspace-project Producto', () => {
+describe('workspace-project Inmueble', () => {
     let page: AppPage;
     let navBar: NavbarPage;
     let producto: ProductoPage;
@@ -16,7 +16,7 @@ describe('workspace-project Producto', () => {
 
     it('Deberia crear producto', () => {
         const ID_PRODUCTO = '001';
-        const DESCRIPCION_PRODUCTO = 'Producto de pruebas';
+        const DESCRIPCION_PRODUCTO = 'Inmueble de pruebas';
 
         page.navigateTo();
         navBar.clickBotonProductos();
