@@ -2,12 +2,12 @@
   <h1 class="mt-4 mb-3">Lista de Inmuebles</h1>
 
   <div class="row g-4">
-    <div class="col-md-4" *ngFor="let item of listaProductos | async">
+    <div class="col-md-4" *ngFor="let item of listaProductos">
       <div class="card">
         <img src={{item.imgCover}} class="card-img-top imgCover">
         <div class="card-body">
           <h5 class="card-title">{{item.type == 1 ? 'Apartamento' : 'Casa'}} - {{item.id}}</h5>
-          <h6 class="card-text mb-3">Sector {{item.ubication}}</h6>
+          <h6 class="card-text mb-3">Sector {{item.ubication.name}}</h6>
           
           <p class="card-text mb-0">Área Total: {{item.totalArea}} mt<sup>2</sup></p>
           <p class="card-text mb-0">Habitaciones: {{item.rooms}}</p>

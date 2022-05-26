@@ -7,7 +7,11 @@
       "builtArea": 50,
       "antiqueId": 5,
       "levelId": 4,
-      "ubication": "4_0.1_4 - Aranjuez",
+      "ubication": {
+        "id": "4",
+        "discount": 0.1,
+        "name": "1 - Aranjuez"
+      },
       "address": "Carrera 51B #96-96",
       "rooms": 2,
       "office": 1,
@@ -24,22 +28,26 @@
     {
       "type": "1",
       "totalArea": 150,
-      "builtArea": 80,
-      "antiqueId": "1",
-      "levelId": 4,
-      "ubication": "11_0.2_11 - Laureles Estadio",
-      "address": "Carrera 80",
+      "builtArea": 100,
+      "antiqueId": "2",
+      "levelId": 3,
+      "ubication": {
+        "id": "3",
+        "discount": 0.1,
+        "name": "3 - Manrique"
+      },
+      "address": "Carrera 51B",
       "rooms": 2,
       "office": 1,
       "bathrooms": 2,
       "garages": 1,
       "floors": 1,
-      "price": 194000000,
-      "priceDiscount": 155200000,
-      "priceAdmon": 155200,
-      "pricePolicy": 0,
-      "imgCover": "https://images.unsplash.com/photo-1484154218962-a197022b5858?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174",
-      "descripcion": "Hermoso Apto, es un segundo piso, cuenta con una vista hermosa.",
+      "price": 57800000,
+      "priceDiscount": 52020000,
+      "priceAdmon": 52020,
+      "pricePolicy": 2601000,
+      "imgCover": "https://images.unsplash.com/photo-1653463174226-76848e041450?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687",
+      "descripcion": "Hermoso Apto",
       "id": 2
     }
   ]

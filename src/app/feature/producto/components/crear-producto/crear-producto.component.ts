@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 10;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 500;
-// const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
 @Component({
   selector: 'app-crear-producto',
@@ -20,7 +19,9 @@ export class CrearProductoComponent implements OnInit {
   dataAntique: { id: number; name: string }[];
   dataUbication: { id: number; name: string; discount: number }[];
 
-  ubication: number;
+  ubicationId: string;
+  ubicationDiscount: number;
+  ubicationName: string;
   antiqueId: number;
   price: number;
   priceDiscount: number;
@@ -33,7 +34,9 @@ export class CrearProductoComponent implements OnInit {
     this.dataAntique = dataAntique;
     this.dataUbication = dataUbication;
 
-    this.ubication = 0;
+    this.ubicationId = '';
+    this.ubicationDiscount = 0;
+    this.ubicationName = '';
     this.antiqueId = 0;
     this.price = 0;
     this.priceDiscount = 0;
@@ -63,11 +66,13 @@ export class CrearProductoComponent implements OnInit {
   }
 
   handleUbication(event) {
-    let discount: string = event.target.value.split('_')[1];
+    console.log(event.target.value);
     
-    this.ubication = parseFloat(discount);
-
-    console.log(this.ubication);
+    let ubicationInfo: string = event.target.value.split('_');
+    
+    this.ubicationId = ubicationInfo[0];
+    this.ubicationDiscount = parseFloat(ubicationInfo[1]);
+    this.ubicationName = ubicationInfo[2];
     
     this.updatePrices();
   } 
@@ -80,7 +85,7 @@ export class CrearProductoComponent implements OnInit {
 
   updatePrices() {
     // Descuento segun el sector
-    this.priceDiscount = this.price - (this.price * this.ubication);
+    this.priceDiscount = this.price - (this.price * this.ubicationDiscount);
 
     // Administración si es aparmento
     if (this.isApartment) {
@@ -98,9 +103,17 @@ export class CrearProductoComponent implements OnInit {
   }
 
   crear() {
+    this.productoForm.value.ubication = {
+      id: this.ubicationId,
+      discount: this.ubicationDiscount,
+      name: this.ubicationName
+    };
     this.productoForm.value.priceDiscount = this.priceDiscount;
     this.productoForm.value.priceAdmon = this.priceAdmon;
     this.productoForm.value.pricePolicy = this.pricePolicy;
+
+    console.log(this.productoForm.value);
+    
     
     this.productoServices.guardar(this.productoForm.value).subscribe(() => {
       // Mostrar el mensaje de éxito
@@ -134,3 +147,23 @@ export class CrearProductoComponent implements OnInit {
     });
   }
 }
+
+
+// type            : ['', Validators.required],
+//       totalArea       : ['', [Validators.required]],
+//       builtArea       : ['', [Validators.required]],
+//       antiqueId       : ['', Validators.required],
+//       levelId         : ['', [Validators.required]],
+//       ubication       : ['', Validators.required],
+//       address         : ['', Validators.required],
+//       rooms           : ['', [Validators.required]],
+//       office          : [''],
+//       bathrooms       : ['', [Validators.required]],
+//       garages         : [''],
+//       floors          : ['', [Validators.required]],
+//       price           : ['', [Validators.required]],
+//       priceDiscount   : [''],
+//       priceAdmon      : [''],
+//       pricePolicy     : [''],
+//       imgCover        : ['', Validators.required],
+//       descripcion     : ['', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]
