@@ -1,17 +1,17 @@
 export class Producto {
-    id: string;
+    id: number;
     type: string;
     totalArea: number;
     builtArea: number;
     antiqueId: string;
-    levelId: string;
+    levelId: number;
     ubication: string;
     address: string;
-    rooms: string;
-    office?: string;
-    bathrooms: string;
-    garages?: string;
-    floors: string;
+    rooms: number;
+    office?: number;
+    bathrooms: number;
+    garages?: number;
+    floors: number;
     price: number;
     priceDiscount: number;
     priceAdmon?: number;
@@ -19,7 +19,7 @@ export class Producto {
     imgCover: string;
     descripcion: string;
 
-    constructor(id: string, type: string, totalArea: number, builtArea: number, antiqueId: string, levelId: string, ubication: string, address: string, rooms: string, office: string, bathrooms: string, garages: string, floors: string, price: number, priceDiscount: number, priceAdmon: number, pricePolicy: number, imgCover: string ,descripcion: string) {
+    constructor(id: number, type: string, totalArea: number, builtArea: number, antiqueId: string, levelId: number, ubication: string, address: string, rooms: number, office: number, bathrooms: number, garages: number, floors: number, price: number, priceDiscount: number, priceAdmon: number, pricePolicy: number, imgCover: string ,descripcion: string) {
         this.id = id;
         this.type = type;
         this.totalArea = totalArea;

@@ -3,91 +3,69 @@
     <h1 class="mt-4 mb-3">Registrar Inmueble</h1>
     <div class="col-12 pb-4">
       <form [formGroup]="productoForm" (ngSubmit)="crear()">
-        <div class="row g-3 d-flex justify-content-start">
+        <!-- <div class="row g-3 d-flex justify-content-start">
           <div class="col-4 col-md-2">
             <label class="mb-1 labelForm" for="id">ID</label>
             <input type="text" id="id" name="id" class="form-control" formControlName="id">
           </div>
-        </div>
+        </div> -->
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-4 col-lg-4">
             <label class="mb-1 labelForm" for="type">Tipo de propiedad</label>
-            <select class="form-select" id="type" name="type" formControlName="type" (change)="handleTypeBuilding($event)">
-              <option value="1">Apartamento</option>
-              <option value="2">Casa</option>
+            <select class="form-select" id="type" name="type" formControlName="type" (change)="handleTypeBuilding($event)" validar>
+              <option *ngFor="let type of dataType" value="{{type.id}}">{{type.name}}</option>
             </select>
           </div>
 
           <div class="col-12 col-md-4 col-lg-3">
             <label class="mb-1 labelForm" for="totalArea">Área total (mt<sup>2</sup>)</label>
-            <input type="number" class="form-control" id="totalArea" name="totalArea" placeholder="100" formControlName="totalArea">
+            <input type="number" class="form-control" id="totalArea" name="totalArea" placeholder="100" formControlName="totalArea" validar>
           </div>
 
           <div class="col-12 col-md-4 col-lg-3">
             <label class="mb-1 labelForm" for="builtArea">Área construida (mt<sup>2</sup>)</label>
-            <input type="number" class="form-control" id="builtArea" name="builtArea" placeholder="100" formControlName="builtArea">
+            <input type="number" class="form-control" id="builtArea" name="builtArea" placeholder="100" formControlName="builtArea" validar>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-4">
             <label class="mb-1 labelForm" for="antique">Antigüedad</label>
-            <select class="form-select" id="antique" name="antique" formControlName="antiqueId" (change)="handleChangeAntique($event)">
-              <option value="1">0 a 5 años</option>
-              <option value="2">6 a 10 años</option>
-              <option value="3">11 a 15 años</option>
-              <option value="4">16 a 20 años</option>
-              <option value="5">21 a 25 años</option>
-              <option value="6">26 a 30 años</option>
-              <option value="7">31 años o más</option>
+            <select class="form-select" id="antique" name="antique" formControlName="antiqueId" (change)="handleChangeAntique($event)" validar>
+              <option *ngFor="let antique of dataAntique" value="{{antique.id}}">{{antique.name}}</option>
             </select>
           </div>
 
           <div class="col-12 col-md-3">
             <label class="mb-1 labelForm" for="levelId">Estrato</label>
-            <input type="number" class="form-control" id="levelId" name="levelId" placeholder="1" formControlName="levelId">
+            <input type="number" class="form-control" id="levelId" name="levelId" placeholder="1" formControlName="levelId" validar>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-4">
             <label class="mb-1 labelForm" for="ubication">Sector</label>
-            <select class="form-select" id="ubication" name="ubication" formControlName="ubication" (change)="handleUbication($event)">
-              <option value="1">1 - Popular</option>
-              <option value="2">2 - Santa Cruz</option>
-              <option value="3">3 - Manrique</option>
-              <option value="4">4 - Aranjuez</option>
-              <option value="5">5 - Castilla</option>
-              <option value="6">6 - 12 de Octubre</option>
-              <option value="7">7 - Robledo</option>
-              <option value="8">8 - Villa Hermosa</option>
-              <option value="9">9 - Buenos Aires</option>
-              <option value="10">10 - La Candelaria</option>
-              <option value="11">11 - Laureles Estadio</option>
-              <option value="12">12 - La América</option>
-              <option value="13">13 - San Javier</option>
-              <option value="14">14 - El Poblado</option>
-              <option value="15">15 - Guayabal</option>
-              <option value="16">16 - Belén</option>
+            <select class="form-select" id="ubication" name="ubication" formControlName="ubication" (change)="handleUbication($event)" validar>
+              <option *ngFor="let ubication of dataUbication" value="{{ubication.id +'_'+ ubication.discount +'_'+ ubication.name}}">{{ubication.name}}</option>
             </select>
           </div>
 
           <div class="col-12 col-md-8 col-lg-6">
             <label class="mb-1 labelForm" for="address">Dirección</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="" formControlName="address">
+            <input type="text" class="form-control" id="address" name="address" placeholder="" formControlName="address" validar>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="rooms">Habitaciones</label>
-            <input type="number" class="form-control" id="rooms" name="rooms" placeholder="1" formControlName="rooms">
+            <input type="number" class="form-control" id="rooms" name="rooms" placeholder="1" formControlName="rooms" validar>
           </div>
 
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="bathrooms">Baños</label>
-            <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="1" formControlName="bathrooms">
+            <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="1" formControlName="bathrooms" validar>
           </div>
 
           <div class="col-6 col-md-3 col-lg-2">
@@ -104,14 +82,14 @@
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="floors">Niveles</label>
-            <input type="number" class="form-control" id="floors" name="floors" placeholder="0" formControlName="floors">
+            <input type="number" class="form-control" id="floors" name="floors" placeholder="0" formControlName="floors" validar>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-4 col-lg-3">
             <label class="mb-1 labelForm" for="price">Valor del inmueble ($)</label>
-            <input type="number" class="form-control" id="price" name="price" placeholder="0" formControlName="price" (change)="handleChangePrice($event)">
+            <input type="number" class="form-control" id="price" name="price" placeholder="0" formControlName="price" (change)="handleChangePrice($event)" validar>
           </div>
 
           <div class="col-12 col-md-4 col-lg-3">
@@ -133,20 +111,20 @@
 
           <div class="col-12 col-md-7 col-lg-6">
             <label class="mb-1 labelForm" for="imgCover">URL Imagen de la Propiedad</label>
-            <input type="text" class="form-control" id="imgCover" name="imgCover" placeholder="" formControlName="imgCover">
+            <input type="text" class="form-control" id="imgCover" name="imgCover" placeholder="" formControlName="imgCover" validar>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-12 col-lg-10">
             <label class="mb-1 labelForm" for="descripcion">Descripción</label>
-            <textarea type="text" class="form-control" id="descripcion" name="descripcion" placeholder="" formControlName="descripcion" rows="5"></textarea>
+            <textarea type="text" class="form-control" id="descripcion" name="descripcion" placeholder="" formControlName="descripcion" rows="5" validar></textarea>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">Registrar Propiedad</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!productoForm.valid">Registrar Propiedad</button>
           </div>
         </div>
       </form>

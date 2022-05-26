@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../../shared/service/producto.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { dataType, dataAntique, dataUbication } from '../../shared/utils/dataSelect';
+import { Router } from '@angular/router';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 10;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 500;
-const numberRegEx = /\-?\d*\.?\d{1,2}/;
+// const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
 @Component({
   selector: 'app-crear-producto',
@@ -15,6 +16,10 @@ const numberRegEx = /\-?\d*\.?\d{1,2}/;
 export class CrearProductoComponent implements OnInit {
   productoForm: FormGroup;
 
+  dataType: { id: number; name: string }[];
+  dataAntique: { id: number; name: string }[];
+  dataUbication: { id: number; name: string; discount: number }[];
+
   ubication: number;
   antiqueId: number;
   price: number;
@@ -23,8 +28,11 @@ export class CrearProductoComponent implements OnInit {
   pricePolicy: number;
   isApartment: boolean;
 
-  // , private router: Router
-  constructor(protected productoServices: ProductoService) {
+  constructor(protected productoServices: ProductoService, private formBuilder: FormBuilder, private router: Router) {
+    this.dataType = dataType;
+    this.dataAntique = dataAntique;
+    this.dataUbication = dataUbication;
+
     this.ubication = 0;
     this.antiqueId = 0;
     this.price = 0;
@@ -55,8 +63,12 @@ export class CrearProductoComponent implements OnInit {
   }
 
   handleUbication(event) {
-    this.ubication = parseInt(event.target.value);
+    let discount: string = event.target.value.split('_')[1];
+    
+    this.ubication = parseFloat(discount);
 
+    console.log(this.ubication);
+    
     this.updatePrices();
   } 
 
@@ -67,25 +79,17 @@ export class CrearProductoComponent implements OnInit {
   }
 
   updatePrices() {
-    // Segun el sector
-    if (this.ubication >= 1 && this.ubication <= 7) {
-      this.priceDiscount = this.price - (this.price * 0.1);
-    } else if (this.ubication >= 8 && this.ubication <= 10) {
-      this.priceDiscount = this.price - (this.price * 0.15);
-    } else if (this.ubication >= 11 && this.ubication <= 13) {
-      this.priceDiscount = this.price - (this.price * 0.2);
-    } else {
-      this.priceDiscount = this.price - (this.price * 0.25);
-    }
+    // Descuento segun el sector
+    this.priceDiscount = this.price - (this.price * this.ubication);
 
-    // Si es aparmento
+    // Administración si es aparmento
     if (this.isApartment) {
       this.priceAdmon = this.priceDiscount * 0.001;
     } else {
       this.priceAdmon = 0;
     }
 
-    // Por antiguedad
+    // Seguro por antiguedad
     if (this.antiqueId >= 2) {
       this.pricePolicy = this.priceDiscount * 0.05;
     } else {
@@ -97,38 +101,36 @@ export class CrearProductoComponent implements OnInit {
     this.productoForm.value.priceDiscount = this.priceDiscount;
     this.productoForm.value.priceAdmon = this.priceAdmon;
     this.productoForm.value.pricePolicy = this.pricePolicy;
-    console.log(this.productoForm.value);
     
-    // this.productoServices.guardar(this.productoForm.value).subscribe(() => {
-    //   // Mostrar el mensaje de éxito
-    //   alert('Producto creado con éxito');
+    this.productoServices.guardar(this.productoForm.value).subscribe(() => {
+      // Mostrar el mensaje de éxito
+      alert('Producto creado con éxito');
 
-    //   // Redireccionar a la lista de productos
-    //   this.router.navigateByUrl('/buildings/listar');
-    // });
+      // Redireccionar a la lista de productos
+      this.router.navigateByUrl('/buildings/listar');
+    });
   }
 
   private construirFormularioProducto() {
-    this.productoForm = new FormGroup({
-      id              : new FormControl('', [Validators.required]),
-      type            : new FormControl('', [Validators.required]),
-      totalArea       : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      builtArea       : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      antiqueId       : new FormControl('', [Validators.required]),
-      levelId         : new FormControl('', [Validators.required]),
-      ubication       : new FormControl('', [Validators.required]),
-      address         : new FormControl('', [Validators.required]),
-      rooms           : new FormControl('', [Validators.required]),
-      office          : new FormControl('', [Validators.required]),
-      bathrooms       : new FormControl('', [Validators.required]),
-      garages         : new FormControl('', [Validators.required]),
-      floors          : new FormControl('', [Validators.required]),
-      price           : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      priceDiscount   : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      priceAdmon      : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      pricePolicy     : new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      imgCover        : new FormControl('', [Validators.required]),
-      descripcion     : new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
+    this.productoForm = this.formBuilder.group({
+      type            : ['', Validators.required],
+      totalArea       : ['', [Validators.required]],
+      builtArea       : ['', [Validators.required]],
+      antiqueId       : ['', Validators.required],
+      levelId         : ['', [Validators.required]],
+      ubication       : ['', Validators.required],
+      address         : ['', Validators.required],
+      rooms           : ['', [Validators.required]],
+      office          : [''],
+      bathrooms       : ['', [Validators.required]],
+      garages         : [''],
+      floors          : ['', [Validators.required]],
+      price           : ['', [Validators.required]],
+      priceDiscount   : [''],
+      priceAdmon      : [''],
+      pricePolicy     : [''],
+      imgCover        : ['', Validators.required],
+      descripcion     : ['', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]
     });
   }
 }
