@@ -7,6 +7,7 @@ import { CrearInmuebleComponent } from './components/crear-producto/crear-produc
 import { InmuebleComponent } from './components/producto/producto.component';
 import { SharedModule } from '@shared/shared.module';
 import { InmuebleService } from './shared/service/inmueble.service';
+import { ListarInmuebleSoloComponent } from './components/listar-inmueble-solo/listar-inmueble-solo.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { InmuebleService } from './shared/service/inmueble.service';
     CrearInmuebleComponent,
     ListarInmuebleComponent,
     BorrarInmuebleComponent,
-    InmuebleComponent
+    InmuebleComponent,
+    ListarInmuebleSoloComponent
   ],
   imports: [
     InmuebleRoutingModule,

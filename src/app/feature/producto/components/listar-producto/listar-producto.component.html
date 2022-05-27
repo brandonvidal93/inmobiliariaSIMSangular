@@ -17,7 +17,7 @@
           <p class="card-text mb-0">Antes: <del>{{item.price | currency: 'USD'}}</del></p>
           <h5 class="card-text text-primary mb-3">Ahora: {{item.priceDiscount  | currency: 'USD'}}</h5>
 
-          <button type="button" class="btn btn-info">Más información</button>
+          <a class="btn btn-info" routerLink="./../inmueble/{{this.item.id}}">Más información</a>
         </div>
       </div>
     </div>

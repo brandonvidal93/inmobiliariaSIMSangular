@@ -4,6 +4,7 @@ import { CrearInmuebleComponent } from './components/crear-producto/crear-produc
 import { ListarInmuebleComponent } from './components/listar-producto/listar-producto.component';
 import { BorrarInmuebleComponent } from './components/borrar-producto/borrar-producto.component';
 import { InmuebleComponent } from './components/producto/producto.component';
+import { ListarInmuebleSoloComponent } from './components/listar-inmueble-solo/listar-inmueble-solo.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,11 @@ const routes: Routes = [
       },
       {
         path: 'listar',
-        component: ListarInmuebleComponent
+        component: ListarInmuebleComponent,
+      },
+      {
+        path: 'inmueble/:id',
+        component: ListarInmuebleSoloComponent
       },
       {
         path: 'borrar',

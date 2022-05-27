@@ -13,12 +13,12 @@ export class ListarInmuebleComponent implements OnInit {
 
   isLoading: boolean;
 
-  constructor(protected productoService: InmuebleService) {
+  constructor(protected inmuebleService: InmuebleService) {
     this.isLoading = true;
   }
 
   listarInmuebles() {
-    this.productoService.consultarInmuebles().subscribe(data => {
+    this.inmuebleService.consultarInmuebles().subscribe(data => {
       this.isLoading = false;
 
       this.listaProductos = data;

@@ -29,7 +29,7 @@ export class CrearInmuebleComponent implements OnInit {
   pricePolicy: number;
   isApartment: boolean;
 
-  constructor(protected productoServices: InmuebleService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(protected inmuebleService: InmuebleService, private formBuilder: FormBuilder, private router: Router) {
     this.dataType = dataType;
     this.dataAntique = dataAntique;
     this.dataUbication = dataUbication;
@@ -110,7 +110,7 @@ export class CrearInmuebleComponent implements OnInit {
     this.productoForm.value.priceAdmon = this.priceAdmon;
     this.productoForm.value.pricePolicy = this.pricePolicy;
     
-    this.productoServices.guardar(this.productoForm.value).subscribe(() => {
+    this.inmuebleService.guardar(this.productoForm.value).subscribe(() => {
       // Mostrar el mensaje de éxito
       alert('Inmueble creado con éxito');
 
