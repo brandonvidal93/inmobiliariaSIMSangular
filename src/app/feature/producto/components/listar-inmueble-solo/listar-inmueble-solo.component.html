@@ -1,1 +1,183 @@
-<p>listar-inmueble-solo works!</p>
+<div class="container-fluid">
+  <div class="row bannerImg">
+    <img src="{{inmueble.imgCover}}" class="img-fluid imgBanner" alt="{{inmueble.ubication.name}}">
+  </div>
+</div>
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-12 pb-4">
+      <form [formGroup]="inmuebleSoloForm">
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <!-- SELECT TIPO PROPIEDAD -->
+          <div class="col-12 col-md-4 col-lg-4">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="type">Tipo de propiedad</label>
+              <select class="form-select" id="type" name="type" formControlName="type" validar>
+                <option *ngFor="let type of dataType" value="{{type.id}}">{{type.name}}</option>
+              </select>
+            </div>
+
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Tipo de propiedad</label>
+              <p class="mb-1 txtInfo">{{tipoInmueble}}</p>
+            </div>
+          </div>
+          
+          <!-- AREA TOTAL -->
+          <div class="col-12 col-md-4 col-lg-3">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="totalArea">Área total (mt<sup>2</sup>)</label>
+              <input type="number" class="form-control" id="totalArea" name="totalArea" placeholder="{{inmueble.totalArea}}" formControlName="totalArea" validar>
+            </div>
+
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Área total (mt<sup>2</sup>)</label>
+              <p class="mb-1 txtInfo">{{inmueble.totalArea}}</p>
+            </div>
+          </div>
+
+          <!-- AREA CONSTRUIDA -->
+          <div class="col-12 col-md-4 col-lg-3">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="builtArea">Área construida (mt<sup>2</sup>)</label>
+              <input type="number" class="form-control" id="builtArea" name="builtArea" placeholder="{{inmueble.builtArea}}" formControlName="builtArea" validar>
+            </div>
+
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Área construida (mt<sup>2</sup>)</label>
+              <p class="mb-1 txtInfo">{{inmueble.builtArea}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <!-- ANTIGUEDAD -->
+          <div class="col-12 col-md-4">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="antique">Antigüedad</label>
+              <select class="form-select" id="antique" name="antique" formControlName="antiqueId" validar>
+                <option *ngFor="let antique of dataAntique" value="{{antique.id}}">{{antique.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Antigüedad</label>
+              <p class="mb-1 txtInfo">{{antiguedad}}</p>
+            </div>
+          </div>
+
+          <!-- ESTADO -->
+          <div class="col-12 col-md-3">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="levelId">Estrato</label>
+              <input type="number" class="form-control" id="levelId" name="levelId" placeholder="{{inmueble.levelId}}" formControlName="levelId" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Estrato</label>
+              <p class="mb-1 txtInfo">{{inmueble.levelId}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <!-- SECTOR -->
+          <div class="col-12 col-md-4">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="ubication">Sector</label>
+              <select class="form-select" id="ubication" name="ubication" formControlName="ubication" validar>
+                <option *ngFor="let ubication of dataUbication" value="{{ubication.id +'_'+ ubication.discount +'_'+ ubication.name}}">{{ubication.name}}</option>
+              </select>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Sector</label>
+              <p class="mb-1 txtInfo">{{sector}}</p>
+            </div>
+          </div>
+
+          <!-- DIRECCION -->
+          <div class="col-12 col-md-8 col-lg-6">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="address">Dirección</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder={{inmueble.address}} formControlName="address" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Dirección</label>
+              <p class="mb-1 txtInfo">{{inmueble.address}}</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <div class="col-6 col-md-3 col-lg-2">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="price">Habitaciones</label>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.rooms}}" formControlName="price" min="1" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Habitaciones</label>
+              <p class="mb-1 txtInfo">{{inmueble.rooms}}</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3 col-lg-2">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="price">Baños</label>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.bathrooms}}" formControlName="price" min="1" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Baños</label>
+              <p class="mb-1 txtInfo">{{inmueble.bathrooms}}</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3 col-lg-2">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="price">Estudios</label>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.office}}" formControlName="price" min="0" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Estudios</label>
+              <p class="mb-1 txtInfo">{{inmueble.office}}</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3 col-lg-2">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="price">Parqueaderos</label>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.garages}}" formControlName="price" min="0" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Parqueaderos</label>
+              <p class="mb-1 txtInfo">{{inmueble.garages}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <div class="col-6 col-md-3 col-lg-2">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="price">Niveles</label>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.floors}}" formControlName="price" min="1" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Niveles</label>
+              <p class="mb-1 txtInfo">{{inmueble.floors}}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOTONERA -->
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <div class="col-auto">
+            <button type="button" class="btn btn-warning" (click)="habilitarEdicion()" *ngIf="!isEdit">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="habilitarEdicion()" *ngIf="isEdit">Cancelar</button>  
+          </div>
+          
+          <div class="col-auto">
+            <button type="submit" class="btn btn-success" *ngIf="isEdit">Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

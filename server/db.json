@@ -74,6 +74,31 @@
       "imgCover": "https://images.unsplash.com/photo-1653427602884-15ea63290719?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
       "descripcion": "Ubicada cerca del metro",
       "id": 3
+    },
+    {
+      "type": "2",
+      "totalArea": 235,
+      "builtArea": 235,
+      "antiqueId": "1",
+      "levelId": 3,
+      "ubication": {
+        "id": "5",
+        "discount": 0.1,
+        "name": "5 - Castilla"
+      },
+      "address": "Carrera 51B # 96-94",
+      "rooms": 3,
+      "office": 1,
+      "bathrooms": 2,
+      "garages": 1,
+      "floors": 1,
+      "price": 129999000,
+      "priceDiscount": 116999100,
+      "priceAdmon": 0,
+      "pricePolicy": 0,
+      "imgCover": "https://images.unsplash.com/photo-1653427603281-3c7f50570f33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+      "descripcion": "Cercana al metrocable",
+      "id": 4
     }
   ]
 }
