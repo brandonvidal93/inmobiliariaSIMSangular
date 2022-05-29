@@ -1,29 +1,29 @@
 {
   "buildings": [
     {
-      "id": 1,
       "type": "2",
-      "totalArea": 100,
+      "totalArea": 70,
       "builtArea": 50,
-      "antiqueId": 5,
+      "antiqueId": "3",
       "levelId": 4,
       "ubication": {
-        "id": "4",
+        "id": "5",
         "discount": 0.1,
-        "name": "1 - Aranjuez"
+        "name": "5 - Castilla"
       },
-      "address": "Carrera 51B #96-96",
+      "address": "Carrera 51B # 96-96",
       "rooms": 2,
       "office": 1,
-      "bathrooms": 1,
+      "bathrooms": 2,
       "garages": 1,
-      "floors": 1,
-      "price": 90000000,
-      "priceDiscount": 81000000,
-      "priceAdmon": 450000,
-      "pricePolicy": 0,
-      "imgCover": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-      "description": ""
+      "floors": 2,
+      "price": 340000000,
+      "priceDiscount": 306000000,
+      "priceAdmon": 0,
+      "pricePolicy": 15300000,
+      "imgCover": "https://images.unsplash.com/photo-1507149833265-60c372daea22?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80",
+      "descripcion": "Actualizado",
+      "id": 1
     },
     {
       "type": "1",
@@ -99,6 +99,31 @@
       "imgCover": "https://images.unsplash.com/photo-1653427603281-3c7f50570f33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
       "descripcion": "Cercana al metrocable",
       "id": 4
+    },
+    {
+      "type": "1",
+      "totalArea": 300,
+      "builtArea": 250,
+      "antiqueId": "2",
+      "levelId": 4,
+      "ubication": {
+        "id": "15",
+        "discount": 0.25,
+        "name": "15 - Guayabal"
+      },
+      "address": "Carrera 51B # 96-96",
+      "rooms": 4,
+      "office": 2,
+      "bathrooms": 3,
+      "garages": 2,
+      "floors": 2,
+      "price": 450000000,
+      "priceDiscount": 337500000,
+      "priceAdmon": 337500,
+      "pricePolicy": 16875000,
+      "imgCover": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
+      "descripcion": "Cerca de metroplus",
+      "id": 5
     }
   ]
 }

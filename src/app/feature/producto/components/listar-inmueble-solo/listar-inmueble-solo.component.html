@@ -6,13 +6,13 @@
 <div class="container pt-4">
   <div class="row">
     <div class="col-12 pb-4">
-      <form [formGroup]="inmuebleSoloForm">
+      <form [formGroup]="inmuebleSoloForm" (ngSubmit)="guardar()">
         <div class="row g-3 d-flex justify-content-start mt-2">
           <!-- SELECT TIPO PROPIEDAD -->
           <div class="col-12 col-md-4 col-lg-4">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="type">Tipo de propiedad</label>
-              <select class="form-select" id="type" name="type" formControlName="type" validar>
+              <select class="form-select" id="type" name="type" formControlName="type" (change)="handleTypeBuilding($event)" validar>
                 <option *ngFor="let type of dataType" value="{{type.id}}">{{type.name}}</option>
               </select>
             </div>
@@ -55,7 +55,7 @@
           <div class="col-12 col-md-4">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="antique">Antigüedad</label>
-              <select class="form-select" id="antique" name="antique" formControlName="antiqueId" validar>
+              <select class="form-select" id="antique" name="antique" formControlName="antiqueId" (change)="handleChangeAntique($event)" validar>
                 <option *ngFor="let antique of dataAntique" value="{{antique.id}}">{{antique.name}}</option>
               </select>
             </div>
@@ -83,7 +83,7 @@
           <div class="col-12 col-md-4">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="ubication">Sector</label>
-              <select class="form-select" id="ubication" name="ubication" formControlName="ubication" validar>
+              <select class="form-select" id="ubication" name="ubication" formControlName="ubication" (change)="handleUbication($event)" validar>
                 <option *ngFor="let ubication of dataUbication" value="{{ubication.id +'_'+ ubication.discount +'_'+ ubication.name}}">{{ubication.name}}</option>
               </select>
             </div>
@@ -111,8 +111,8 @@
           <!-- HABITACIONES -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
-              <label class="mb-1 labelForm" for="price">Habitaciones</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.rooms}}" formControlName="price" min="1" validar>
+              <label class="mb-1 labelForm" for="rooms">Habitaciones</label>
+              <input type="number" class="form-control" id="rooms" name="rooms" placeholder="{{inmueble.rooms}}" formControlName="rooms" min="1" validar>
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Habitaciones</label>
@@ -123,8 +123,8 @@
           <!-- BAÑOS -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
-              <label class="mb-1 labelForm" for="price">Baños</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.bathrooms}}" formControlName="price" min="1" validar>
+              <label class="mb-1 labelForm" for="bathrooms">Baños</label>
+              <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="{{inmueble.bathrooms}}" formControlName="bathrooms" min="1" validar>
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Baños</label>
@@ -134,9 +134,9 @@
 
           <!-- ESTUDIOS -->
           <div class="col-6 col-md-3 col-lg-2">
-            <div *ngIf="isEdit">
-              <label class="mb-1 labelForm" for="price">Estudios</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.office}}" formControlName="price" min="0" validar>
+            <div *ngIf="isEdit">  
+              <label class="mb-1 labelForm" for="office">Estudios</label>
+              <input type="number" class="form-control" id="office" name="office" placeholder="{{inmueble.office}}" formControlName="office" min="0" validar>
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Estudios</label>
@@ -147,8 +147,8 @@
           <!-- PARQUEADEROS -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
-              <label class="mb-1 labelForm" for="price">Parqueaderos</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.garages}}" formControlName="price" min="0" validar>
+              <label class="mb-1 labelForm" for="garages">Parqueaderos</label>
+              <input type="number" class="form-control" id="garages" name="garages" placeholder="{{inmueble.garages}}" formControlName="garages" min="0" validar>
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Parqueaderos</label>
@@ -161,8 +161,8 @@
           <!-- NIVELES -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
-              <label class="mb-1 labelForm" for="price">Niveles</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{inmueble.floors}}" formControlName="price" min="1" validar>
+              <label class="mb-1 labelForm" for="floors">Niveles</label>
+              <input type="number" class="form-control" id="floors" name="floors" placeholder="{{inmueble.floors}}" formControlName="floors" min="1" validar>
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Niveles</label>
@@ -175,7 +175,7 @@
           <div class="col-12 col-md-4 col-lg-3">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Valor del inmueble ($)</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{price}}" formControlName="price" min="0" validar>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{price}}" formControlName="price" min="0" (change)="handleChangePrice($event)" validar>
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Valor del inmueble ($)</label>
@@ -254,7 +254,7 @@
           </div>
           
           <div class="col-auto">
-            <button type="submit" class="btn btn-success" *ngIf="isEdit">Guardar</button>
+            <button type="submit" class="btn btn-success" [disabled]="!inmuebleSoloForm.valid" *ngIf="isEdit">Guardar</button>
           </div>
         </div>
       </form>

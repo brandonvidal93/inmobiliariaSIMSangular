@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Inmueble } from '@producto/shared/model/inmueble';
 import { InmuebleService } from '@producto/shared/service/inmueble.service';
 import { dataType, dataAntique, dataUbication } from '../../shared/utils/dataSelect';
+import { Router } from '@angular/router';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 10;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 500;
@@ -19,11 +20,16 @@ export class ListarInmuebleSoloComponent implements OnInit {
   tipoInmueble: string;
   antiguedad: string;
   sector: string;
+  ubicationId: string;
+  ubicationDiscount: number;
+  ubicationName: string;
+  isApartment: boolean;
 
   price: number;
   priceDiscount: number;
   priceAdmon: number;
   pricePolicy: number;
+  antiqueId: number;
 
   dataType: { id: number; name: string }[];
   dataAntique: { id: number; name: string }[];
@@ -34,7 +40,7 @@ export class ListarInmuebleSoloComponent implements OnInit {
 
   inmuebleSoloForm: FormGroup;
 
-  constructor(private aRoute: ActivatedRoute, protected inmuebleServices: InmuebleService, private formBuilder: FormBuilder) {
+  constructor(private aRoute: ActivatedRoute, protected inmuebleServices: InmuebleService, private formBuilder: FormBuilder, private router: Router) {
     this.id = parseInt(this.aRoute.snapshot.paramMap.get('id'));
     this.tipoInmueble = '';
     this.antiguedad = '';
@@ -43,6 +49,11 @@ export class ListarInmuebleSoloComponent implements OnInit {
     this.priceDiscount = 0;
     this.priceAdmon = 0;
     this.pricePolicy = 0;
+    this.isApartment = false;
+    this.ubicationId = '';
+    this.ubicationDiscount = 0;
+    this.ubicationName = '';
+    this.antiqueId= 0;
 
     this.dataType = dataType;
     this.dataAntique = dataAntique;
@@ -55,6 +66,57 @@ export class ListarInmuebleSoloComponent implements OnInit {
   ngOnInit(): void {
     this.getInmuebleSolo();
     this.construirFormularioInmuebleSolo();
+  }
+
+  handleTypeBuilding(event) {
+    if (event.target.value === '1') {
+      this.isApartment = true;
+    } else {
+      this.isApartment = false;
+    }
+
+    this.updatePrices();
+  }
+
+  handleChangeAntique(event) {
+    this.antiqueId = parseInt(event.target.value);
+
+    this.updatePrices();
+  }
+
+  handleUbication(event) {
+    let ubicationInfo: string = event.target.value.split('_');
+    
+    this.ubicationId = ubicationInfo[0];
+    this.ubicationDiscount = parseFloat(ubicationInfo[1]);
+    this.ubicationName = ubicationInfo[2];
+    
+    this.updatePrices();
+  } 
+
+  handleChangePrice(event) {
+    this.price = parseInt(event.target.value);
+
+    this.updatePrices();
+  }
+
+  updatePrices() {
+    // Descuento segun el sector
+    this.priceDiscount = this.price - (this.price * this.ubicationDiscount);
+
+    // Administración si es aparmento
+    if (this.isApartment) {
+      this.priceAdmon = this.priceDiscount * 0.001;
+    } else {
+      this.priceAdmon = 0;
+    }
+
+    // Seguro por antiguedad
+    if (this.antiqueId >= 2) {
+      this.pricePolicy = this.priceDiscount * 0.05;
+    } else {
+      this.pricePolicy = 0;
+    }
   }
 
   private getInmuebleSolo() {
@@ -111,6 +173,33 @@ export class ListarInmuebleSoloComponent implements OnInit {
 
   habilitarEdicion() {
     this.isEdit = !this.isEdit;
+
+    if (this.isEdit === false) {
+      this.getInmuebleSolo();
+    }
+  }
+
+  guardar() {
+    this.inmuebleSoloForm.value.id = this.id;
+    this.inmuebleSoloForm.value.ubication = {
+      id: this.ubicationId,
+      discount: this.ubicationDiscount,
+      name: this.ubicationName
+    };
+    this.inmuebleSoloForm.value.priceDiscount = this.priceDiscount;
+    this.inmuebleSoloForm.value.priceAdmon = this.priceAdmon;
+    this.inmuebleSoloForm.value.pricePolicy = this.pricePolicy;
+
+    console.log(this.inmuebleSoloForm.value);
+    
+    
+    this.inmuebleServices.actualizar(this.inmuebleSoloForm.value).subscribe(() => {
+      // Mostrar el mensaje de éxito
+      alert('Inmueble actualizado con éxito');
+
+      // Redireccionar a la lista de productos
+      this.router.navigateByUrl('/buildings/listar');
+    });
   }
 
 }

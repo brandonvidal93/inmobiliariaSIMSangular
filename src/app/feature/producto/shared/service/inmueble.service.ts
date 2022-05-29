@@ -22,6 +22,10 @@ export class InmuebleService {
     return this.httpClient.post<Inmueble>(`${environment.endpoint}/buildings`, inmueble);
   }
 
+  public actualizar(inmueble: Inmueble) {
+    return this.httpClient.put<Inmueble>(`${environment.endpoint}/buildings/${inmueble.id}`, inmueble);
+  }
+
   // public eliminar(producto: Inmueble) {
   //   return this.http.doDelete<boolean>(`${environment.endpoint}/productos/${producto.id}`, this.http.optsName('eliminar productos'));
   // }
