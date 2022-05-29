@@ -20,6 +20,11 @@ export class ListarInmuebleSoloComponent implements OnInit {
   antiguedad: string;
   sector: string;
 
+  price: number;
+  priceDiscount: number;
+  priceAdmon: number;
+  pricePolicy: number;
+
   dataType: { id: number; name: string }[];
   dataAntique: { id: number; name: string }[];
   dataUbication: { id: number; name: string; discount: number }[];
@@ -34,6 +39,10 @@ export class ListarInmuebleSoloComponent implements OnInit {
     this.tipoInmueble = '';
     this.antiguedad = '';
     this.sector = '';
+    this.price = 0;
+    this.priceDiscount = 0;
+    this.priceAdmon = 0;
+    this.pricePolicy = 0;
 
     this.dataType = dataType;
     this.dataAntique = dataAntique;
@@ -69,6 +78,11 @@ export class ListarInmuebleSoloComponent implements OnInit {
           this.sector = ubication.name;
         }
       });
+
+      this.price = this.inmueble.price;
+      this.priceDiscount = this.inmueble.priceDiscount;
+      this.priceAdmon = this.inmueble.priceAdmon;
+      this.pricePolicy = this.inmueble.pricePolicy;
     });
   }
 

@@ -108,6 +108,7 @@
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
+          <!-- HABITACIONES -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Habitaciones</label>
@@ -119,6 +120,7 @@
             </div>
           </div>
 
+          <!-- BAÑOS -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Baños</label>
@@ -130,6 +132,7 @@
             </div>
           </div>
 
+          <!-- ESTUDIOS -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Estudios</label>
@@ -141,6 +144,7 @@
             </div>
           </div>
 
+          <!-- PARQUEADEROS -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Parqueaderos</label>
@@ -154,6 +158,7 @@
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
+          <!-- NIVELES -->
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Niveles</label>
@@ -162,6 +167,81 @@
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Niveles</label>
               <p class="mb-1 txtInfo">{{inmueble.floors}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <div class="col-12 col-md-4 col-lg-3">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="price">Valor del inmueble ($)</label>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{price}}" formControlName="price" min="0" validar>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Valor del inmueble ($)</label>
+              <p class="mb-1 txtInfo">{{price  | currency: 'USD'}}</p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="priceDiscount">Valor de venta ($)</label>
+              <input type="number" class="form-control" id="price" name="priceDiscount" placeholder="{{priceDiscount}}" value="{{priceDiscount}}" formControlName="priceDiscount" min="0" validar disabled>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Valor de venta ($)</label>
+              <p class="mb-1 txtInfo">{{priceDiscount  | currency: 'USD'}}</p>
+            </div>
+            
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-3">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="priceAdmon">Administración ($)</label>
+              <input type="number" class="form-control" id="price" name="priceAdmon" placeholder="{{priceAdmon}}" value="{{priceAdmon}}" formControlName="priceAdmon" min="0" validar disabled>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Valor Administración ($)</label>
+              <p class="mb-1 txtInfo">{{priceAdmon  | currency: 'USD'}}</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="row g-3 d-flex justify-content-start mt-2">
+          <div class="col-12 col-md-5 col-lg-4">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="pricePolicy">Seguro de vivienda (valor anual $)</label>
+              <input type="number" class="form-control" id="pricePolicy" name="pricePolicy" placeholder="{{pricePolicy}}" value="{{pricePolicy}}" formControlName="pricePolicy" disabled>
+            </div>
+            <div *ngIf="!isEdit">
+              <label class="mb-1 labelForm">Seguro de vivienda (valor anual $)</label>
+              <p class="mb-1 txtInfo">{{pricePolicy  | currency: 'USD'}}</p>
+            </div>
+            
+          </div>
+
+          <div class="col-12 col-md-7 col-lg-6">
+            <div *ngIf="isEdit">
+              <label class="mb-1 labelForm" for="imgCover">URL Imagen de la Propiedad</label>
+              <input type="text" class="form-control" id="imgCover" name="imgCover" placeholder="{{inmueble.imgCover}}" formControlName="imgCover" validar>
+            </div>
+            <div *ngIf="!isEdit"> 
+              <label class="mb-1 labelForm">URL Imagen de la Propiedad</label>
+              <p class="mb-1 txtInfo labelImgCover">{{inmueble.imgCover}}</p>
+            </div>
+          </div>
+
+          <div class="row g-3 d-flex justify-content-start mt-2">
+            <div class="col-12 col-md-12 col-lg-10">
+              <div *ngIf="isEdit">
+                <label class="mb-1 labelForm" for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="{{inmueble.descripcion}}" formControlName="descripcion" validar></textarea>
+              </div>
+              <div *ngIf="!isEdit">
+                <label class="mb-1 labelForm">Descripción</label>
+                <p class="mb-1 txtInfo">{{inmueble.descripcion}}</p>
+              </div>
             </div>
           </div>
         </div>
