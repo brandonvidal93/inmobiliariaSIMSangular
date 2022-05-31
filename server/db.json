@@ -1,15 +1,15 @@
 {
   "buildings": [
     {
-      "type": "1",
-      "totalArea": 130,
-      "builtArea": 100,
+      "type": "2",
+      "totalArea": 150,
+      "builtArea": 150,
       "antiqueId": "1",
-      "levelId": 3,
+      "levelId": 4,
       "ubication": {
-        "id": "13",
-        "discount": 0.2,
-        "name": "13 - San Javier"
+        "id": "16",
+        "discount": 0.25,
+        "name": "16 - Belén"
       },
       "address": "Carerra 51B #96-96",
       "rooms": 3,
@@ -18,8 +18,8 @@
       "garages": 1,
       "floors": 1,
       "price": 128950000,
-      "priceDiscount": 103160000,
-      "priceAdmon": 103160,
+      "priceDiscount": 96712500,
+      "priceAdmon": 0,
       "pricePolicy": 0,
       "imgCover": "https://images.unsplash.com/photo-1534595038511-9f219fe0c979?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       "descripcion": "Apartamento amplio",

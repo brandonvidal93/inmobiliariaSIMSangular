@@ -27,7 +27,7 @@
           <div class="col-12 col-md-4 col-lg-3">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="totalArea">Área total (mt<sup>2</sup>)</label>
-              <input type="number" class="form-control" id="totalArea" name="totalArea" placeholder="{{inmueble.totalArea}}" formControlName="totalArea" validar>
+              <input type="number" min="0" class="form-control" id="totalArea" name="totalArea" placeholder="{{inmueble.totalArea}}" formControlName="totalArea" validar [(ngModel)]="inmueble.totalArea">
             </div>
 
             <div *ngIf="!isEdit">
@@ -40,7 +40,7 @@
           <div class="col-12 col-md-4 col-lg-3">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="builtArea">Área construida (mt<sup>2</sup>)</label>
-              <input type="number" class="form-control" id="builtArea" name="builtArea" placeholder="{{inmueble.builtArea}}" formControlName="builtArea" validar>
+              <input type="number" min="0" class="form-control" id="builtArea" name="builtArea" placeholder="{{inmueble.builtArea}}" formControlName="builtArea" validar [(ngModel)]="inmueble.builtArea">
             </div>
 
             <div *ngIf="!isEdit">
@@ -69,7 +69,7 @@
           <div class="col-12 col-md-3">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="levelId">Estrato</label>
-              <input type="number" class="form-control" id="levelId" name="levelId" placeholder="{{inmueble.levelId}}" formControlName="levelId" validar>
+              <input type="number" min="1" class="form-control" id="levelId" name="levelId" placeholder="{{inmueble.levelId}}" formControlName="levelId" validar [(ngModel)]="inmueble.levelId">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Estrato</label>
@@ -97,7 +97,7 @@
           <div class="col-12 col-md-8 col-lg-6">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="address">Dirección</label>
-              <input type="text" class="form-control" id="address" name="address" placeholder={{inmueble.address}} formControlName="address" validar>
+              <input type="text" class="form-control" id="address" name="address" placeholder={{inmueble.address}} formControlName="address" validar [(ngModel)]="inmueble.address">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Dirección</label>
@@ -112,7 +112,7 @@
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="rooms">Habitaciones</label>
-              <input type="number" class="form-control" id="rooms" name="rooms" placeholder="{{inmueble.rooms}}" formControlName="rooms" min="1" validar>
+              <input type="number" class="form-control" id="rooms" name="rooms" placeholder="{{inmueble.rooms}}" formControlName="rooms" min="1" validar [(ngModel)]="inmueble.rooms">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Habitaciones</label>
@@ -124,7 +124,7 @@
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="bathrooms">Baños</label>
-              <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="{{inmueble.bathrooms}}" formControlName="bathrooms" min="1" validar>
+              <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="{{inmueble.bathrooms}}" formControlName="bathrooms" min="1" validar [(ngModel)]="inmueble.bathrooms">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Baños</label>
@@ -136,7 +136,7 @@
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">  
               <label class="mb-1 labelForm" for="office">Estudios</label>
-              <input type="number" class="form-control" id="office" name="office" placeholder="{{inmueble.office}}" formControlName="office" min="0" validar>
+              <input type="number" class="form-control" id="office" name="office" placeholder="{{inmueble.office}}" formControlName="office" min="0" validar [(ngModel)]="inmueble.office">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Estudios</label>
@@ -148,7 +148,7 @@
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="garages">Parqueaderos</label>
-              <input type="number" class="form-control" id="garages" name="garages" placeholder="{{inmueble.garages}}" formControlName="garages" min="0" validar>
+              <input type="number" class="form-control" id="garages" name="garages" placeholder="{{inmueble.garages}}" formControlName="garages" min="0" validar [(ngModel)]="inmueble.garages">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Parqueaderos</label>
@@ -162,7 +162,7 @@
           <div class="col-6 col-md-3 col-lg-2">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="floors">Niveles</label>
-              <input type="number" class="form-control" id="floors" name="floors" placeholder="{{inmueble.floors}}" formControlName="floors" min="1" validar>
+              <input type="number" class="form-control" id="floors" name="floors" placeholder="{{inmueble.floors}}" formControlName="floors" min="1" validar [(ngModel)]="inmueble.floors">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Niveles</label>
@@ -175,7 +175,7 @@
           <div class="col-12 col-md-4 col-lg-3">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="price">Valor del inmueble ($)</label>
-              <input type="number" class="form-control" id="price" name="price" placeholder="{{price}}" formControlName="price" min="0" (change)="handleChangePrice($event)" validar>
+              <input type="number" class="form-control" id="price" name="price" placeholder="{{price}}" formControlName="price" min="0" (change)="handleChangePrice($event)" validar [(ngModel)]="inmueble.price">
             </div>
             <div *ngIf="!isEdit">
               <label class="mb-1 labelForm">Valor del inmueble ($)</label>
@@ -224,7 +224,7 @@
           <div class="col-12 col-md-7 col-lg-6">
             <div *ngIf="isEdit">
               <label class="mb-1 labelForm" for="imgCover">URL Imagen de la Propiedad</label>
-              <input type="text" class="form-control" id="imgCover" name="imgCover" placeholder="{{inmueble.imgCover}}" formControlName="imgCover" validar>
+              <input type="text" class="form-control" id="imgCover" name="imgCover" placeholder="{{inmueble.imgCover}}" formControlName="imgCover" validar [(ngModel)]="inmueble.imgCover">
             </div>
             <div *ngIf="!isEdit"> 
               <label class="mb-1 labelForm">URL Imagen de la Propiedad</label>
@@ -236,7 +236,7 @@
             <div class="col-12 col-md-12 col-lg-10">
               <div *ngIf="isEdit">
                 <label class="mb-1 labelForm" for="descripcion">Descripción</label>
-                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="{{inmueble.descripcion}}" formControlName="descripcion" validar></textarea>
+                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="{{inmueble.descripcion}}" formControlName="descripcion" validar [(ngModel)]="inmueble.descripcion"></textarea>
               </div>
               <div *ngIf="!isEdit">
                 <label class="mb-1 labelForm">Descripción</label>

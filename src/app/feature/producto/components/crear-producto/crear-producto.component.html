@@ -20,12 +20,12 @@
 
           <div class="col-12 col-md-4 col-lg-3">
             <label class="mb-1 labelForm" for="totalArea">Área total (mt<sup>2</sup>)</label>
-            <input type="number" class="form-control" id="totalArea" name="totalArea" placeholder="100" formControlName="totalArea" validar>
+            <input type="number" min="0" class="form-control" id="totalArea" name="totalArea" placeholder="100" formControlName="totalArea" validar>
           </div>
 
           <div class="col-12 col-md-4 col-lg-3">
             <label class="mb-1 labelForm" for="builtArea">Área construida (mt<sup>2</sup>)</label>
-            <input type="number" class="form-control" id="builtArea" name="builtArea" placeholder="100" formControlName="builtArea" validar>
+            <input type="number" min="0" class="form-control" id="builtArea" name="builtArea" placeholder="100" formControlName="builtArea" validar>
           </div>
         </div>
 
@@ -39,7 +39,7 @@
 
           <div class="col-12 col-md-3">
             <label class="mb-1 labelForm" for="levelId">Estrato</label>
-            <input type="number" class="form-control" id="levelId" name="levelId" placeholder="1" formControlName="levelId" validar>
+            <input type="number" min="1" class="form-control" id="levelId" name="levelId" placeholder="1" formControlName="levelId" validar>
           </div>
         </div>
 
@@ -60,36 +60,36 @@
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="rooms">Habitaciones</label>
-            <input type="number" class="form-control" id="rooms" name="rooms" placeholder="1" formControlName="rooms" validar>
+            <input type="number" min="1" class="form-control" id="rooms" name="rooms" placeholder="1" formControlName="rooms" validar>
           </div>
 
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="bathrooms">Baños</label>
-            <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="1" formControlName="bathrooms" validar>
+            <input type="number" min="1" class="form-control" id="bathrooms" name="bathrooms" placeholder="1" formControlName="bathrooms" validar>
           </div>
 
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="office">Estudios</label>
-            <input type="number" class="form-control" id="office" name="office" placeholder="0" formControlName="office">
+            <input type="number" min="0" class="form-control" id="office" name="office" placeholder="0" formControlName="office">
           </div>
 
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="garages">Parqueaderos</label>
-            <input type="number" class="form-control" id="garages" name="garages" placeholder="0" formControlName="garages">
+            <input type="number" min="0" class="form-control" id="garages" name="garages" placeholder="0" formControlName="garages">
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-6 col-md-3 col-lg-2">
             <label class="mb-1 labelForm" for="floors">Niveles</label>
-            <input type="number" class="form-control" id="floors" name="floors" placeholder="0" formControlName="floors" validar>
+            <input type="number" min="1" class="form-control" id="floors" name="floors" placeholder="0" formControlName="floors" validar>
           </div>
         </div>
 
         <div class="row g-3 d-flex justify-content-start mt-2">
           <div class="col-12 col-md-4 col-lg-3">
             <label class="mb-1 labelForm" for="price">Valor del inmueble ($)</label>
-            <input type="number" class="form-control" id="price" name="price" placeholder="0" formControlName="price" (change)="handleChangePrice($event)" validar>
+            <input type="number" min="0" class="form-control" id="price" name="price" placeholder="0" formControlName="price" (change)="handleChangePrice($event)" validar>
           </div>
 
           <div class="col-12 col-md-4 col-lg-3">
