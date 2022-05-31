@@ -254,6 +254,7 @@
           </div>
           
           <div class="col-auto">
+            <button type="button" class="btn btn-danger" (click)="borrarInmueble()" *ngIf="!isEdit">Borrar</button>
             <button type="submit" class="btn btn-success" [disabled]="!inmuebleSoloForm.valid" *ngIf="isEdit">Guardar</button>
           </div>
         </div>

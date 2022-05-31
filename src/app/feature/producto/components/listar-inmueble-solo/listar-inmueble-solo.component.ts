@@ -202,4 +202,17 @@ export class ListarInmuebleSoloComponent implements OnInit {
     });
   }
 
+  borrarInmueble() {
+    const isDelete: boolean =  confirm('¿Desea borrar el Inmueble?');
+
+    if (isDelete) {
+      this.inmuebleServices.eliminar(this.id).subscribe(() => {
+        // Mostrar el mensaje de éxito
+        alert('Inmueble eliminado con éxito');
+
+        // Redireccionar a la lista de productos
+        this.router.navigateByUrl('/buildings/listar');
+      });
+    }
+  }
 }

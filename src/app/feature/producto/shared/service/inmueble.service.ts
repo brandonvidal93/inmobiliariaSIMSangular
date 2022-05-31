@@ -26,7 +26,7 @@ export class InmuebleService {
     return this.httpClient.put<Inmueble>(`${environment.endpoint}/buildings/${inmueble.id}`, inmueble);
   }
 
-  // public eliminar(producto: Inmueble) {
-  //   return this.http.doDelete<boolean>(`${environment.endpoint}/productos/${producto.id}`, this.http.optsName('eliminar productos'));
-  // }
+  public eliminar(id: number) {
+    return this.httpClient.delete<Inmueble>(`${environment.endpoint}/buildings/${id}`);
+  }
 }
