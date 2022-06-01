@@ -37,6 +37,7 @@ export class ListarInmuebleSoloComponent implements OnInit {
 
   isLoading: boolean;
   isEdit: boolean;
+  isDelete: boolean;
 
   inmuebleSoloForm: FormGroup;
 
@@ -61,6 +62,7 @@ export class ListarInmuebleSoloComponent implements OnInit {
 
     this.isLoading = true;
     this.isEdit = false;
+    this.isDelete = false;
   }
 
   ngOnInit(): void {
@@ -179,9 +181,9 @@ export class ListarInmuebleSoloComponent implements OnInit {
   }
 
   borrarInmueble() {
-    const isDelete: boolean =  confirm('¿Desea borrar el Inmueble?');
+    this.isDelete = confirm('¿Desea borrar el Inmueble?');
 
-    if (isDelete) {
+    if (this.isDelete) {
       this.inmuebleServices.eliminar(this.id).subscribe(() => {
         // Mostrar el mensaje de éxito
         alert('Inmueble eliminado con éxito');
