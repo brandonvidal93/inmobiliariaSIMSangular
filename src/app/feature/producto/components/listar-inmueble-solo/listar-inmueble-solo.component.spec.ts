@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { InmuebleService } from '@producto/shared/service/inmueble.service';
 
 import { ListarInmuebleSoloComponent } from './listar-inmueble-solo.component';
 
@@ -8,7 +10,11 @@ describe('ListarInmuebleSoloComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarInmuebleSoloComponent ]
+      declarations: [ ListarInmuebleSoloComponent ],
+      imports: [
+        RouterTestingModule,
+        InmuebleService
+      ],
     })
     .compileComponents();
   });
@@ -21,5 +27,6 @@ describe('ListarInmuebleSoloComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+
   });
 });
