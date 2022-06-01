@@ -3,7 +3,7 @@
   <div class="row g-4">
     <app-spinner *ngIf="isLoading"></app-spinner>
 
-    <div class="col-md-4" *ngFor="let item of listaProductos">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4" *ngFor="let item of listaProductos">
       <div class="card">
         <img src={{item.imgCover}} class="card-img-top imgCover" alt="imagen inmueble">
         <div class="card-body">
