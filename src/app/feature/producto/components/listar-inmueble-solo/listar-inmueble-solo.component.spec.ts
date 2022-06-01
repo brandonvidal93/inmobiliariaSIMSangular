@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { InmuebleService } from '@producto/shared/service/inmueble.service';
 
@@ -12,9 +15,13 @@ describe('ListarInmuebleSoloComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ListarInmuebleSoloComponent ],
       imports: [
+        CommonModule,
+        HttpClientTestingModule,
         RouterTestingModule,
-        InmuebleService
+        ReactiveFormsModule,
+        FormsModule
       ],
+      providers: [InmuebleService],
     })
     .compileComponents();
   });

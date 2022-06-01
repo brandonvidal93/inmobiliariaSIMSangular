@@ -5,7 +5,6 @@ import { InmuebleService } from './inmueble.service';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
 import { Inmueble } from '../model/inmueble';
-// import { HttpResponse } from '@angular/common/http';
 
 describe('InmuebleService', () => {
   let httpMock: HttpTestingController;
@@ -59,7 +58,7 @@ describe('InmuebleService', () => {
     });
     const req = httpMock.expectOne(apiEndpointInmueble);
     expect(req.request.method).toBe('POST');
-    req.flush(true);
+    req.flush(dummyProducto);
   });
 
   it('deberia actualizar un producto', () => {
@@ -70,7 +69,7 @@ describe('InmuebleService', () => {
     });
     const req = httpMock.expectOne(apiEndpointInmueble + '/6');
     expect(req.request.method).toBe('PUT');
-    req.flush(true);
+    req.flush(dummyProducto);
   });
 
   it('deberia eliminar un producto', () => {
