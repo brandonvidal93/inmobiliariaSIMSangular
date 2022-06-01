@@ -15,7 +15,41 @@ describe('CrearInmuebleComponent', () => {
   let fixture: ComponentFixture<CrearInmuebleComponent>;
   let productoService: InmuebleService;
 
-  // const inmueble = { id: 6, type: '1', totalArea: 200, builtArea: 200, antiqueId: '2', levelId: 3, ubicationId: '10', ubicationDiscount: 0.15, ubicationName: '10 - La Candelaria', address: 'Carrera 80B', rooms: 4, office: 2, bathrooms: 3, garages: 1, floors: 2, 350000000, 297500000, 250000, 1500000, 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80', 'Apartamento amplio y bien ubicado'}
+  const eventType = {
+    target: {
+      value: '1'
+    }
+  };
+
+  const eventTypeFalse = {
+    target: {
+      value: '2'
+    }
+  };
+
+  const eventAntique = {
+    target: {
+      value: '1'
+    }
+  };
+
+  const eventAntiquePolicy = {
+    target: {
+      value: '3'
+    }
+  };
+
+  const eventUbication = {
+    target: {
+      value: '1_0.1_1 - Popular'
+    }
+  };
+
+  const eventPrice = {
+    target: {
+      value: '150000000'
+    }
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -51,7 +85,7 @@ describe('CrearInmuebleComponent', () => {
     expect(component.productoForm.valid).toBeFalsy();
   });
 
-  it('Registrando producto', () => {
+  it('Registrando inmueble', () => {
     expect(component.productoForm.valid).toBeFalsy();
     component.productoForm.controls.type.setValue('2');
     component.productoForm.controls.totalArea.setValue(100);
@@ -79,5 +113,35 @@ describe('CrearInmuebleComponent', () => {
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect
+  });
+
+  it('validando si es apartamento', () => {
+    component.handleTypeBuilding(eventType);
+    expect(component.handleTypeBuilding).toBeTruthy();
+  });
+
+  it('validando si es casa', () => {
+    component.handleTypeBuilding(eventTypeFalse);
+    expect(component.handleTypeBuilding).toBeTruthy();
+  });
+
+  it('Seleccionando antiguedad', () => {
+    component.handleChangeAntique(eventAntique);
+    expect(component.handleChangeAntique).toBeTruthy();
+  });
+
+  it('Seleccionando antiguedad mayor a 5 años', () => {
+    component.handleChangeAntique(eventAntiquePolicy);
+    expect(component.handleChangeAntique).toBeTruthy();
+  });
+
+  it('Seleccionando ubicación', () => {
+    component.handleUbication(eventUbication);
+    expect(component.handleUbication).toBeTruthy();
+  });
+
+  it('Convirtiendo el precio del inmueble', () => {
+    component.handleChangePrice(eventPrice);
+    expect(component.handleChangePrice).toBeTruthy();
   });
 });

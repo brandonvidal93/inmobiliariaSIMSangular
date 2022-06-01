@@ -40,9 +40,9 @@ describe('ListarInmuebleComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    // component.listaProductos.subscribe(resultado => {
-    //   expect(1).toBe(resultado.length);
-    // });
+    productoService.consultarInmuebles().subscribe(resultado => {
+      expect(resultado).toEqual(listaProductos);
+    });
   });
 
 });
