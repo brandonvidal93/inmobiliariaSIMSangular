@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <div class="row bannerImg">
+    <app-spinner *ngIf="isLoading"></app-spinner>
     <img src="{{inmueble.imgCover}}" class="img-fluid imgBanner" alt="{{inmueble.ubication.name}}">
   </div>
 </div>

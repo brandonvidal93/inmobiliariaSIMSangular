@@ -11,8 +11,6 @@ export class NavbarComponent implements OnInit {
   @Input()
   items: MenuItem[];
 
-  constructor() { }
-
   ngOnInit() {
   }
 

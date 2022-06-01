@@ -119,8 +119,18 @@ export class ListarInmuebleSoloComponent implements OnInit {
     }
   }
 
+  habilitarEdicion() {
+    this.isEdit = !this.isEdit;
+
+    if (this.isEdit === false) {
+      this.getInmuebleSolo();
+    }
+  }
+
   private getInmuebleSolo() {
     this.inmuebleServices.consultarInmueble(this.id).subscribe(data => {
+      this.isLoading = false;
+      
       this.inmueble = data;
 
       this.dataType.forEach(type => {
@@ -148,37 +158,6 @@ export class ListarInmuebleSoloComponent implements OnInit {
     });
   }
 
-  private construirFormularioInmuebleSolo() {
-    this.inmuebleSoloForm = this.formBuilder.group({
-      type            : ['', [Validators.required]],
-      totalArea       : ['', [Validators.required]],
-      builtArea       : ['', [Validators.required]],
-      antiqueId       : ['', Validators.required],
-      levelId         : ['', [Validators.required]],
-      ubication       : ['', Validators.required],
-      address         : ['', Validators.required],
-      rooms           : ['', [Validators.required]],
-      office          : [''],
-      bathrooms       : ['', [Validators.required]],
-      garages         : [''],
-      floors          : ['', [Validators.required]],
-      price           : ['', [Validators.required]],
-      priceDiscount   : [''],
-      priceAdmon      : [''],
-      pricePolicy     : [''],
-      imgCover        : ['', Validators.required],
-      descripcion     : ['', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]
-    });
-  }
-
-  habilitarEdicion() {
-    this.isEdit = !this.isEdit;
-
-    if (this.isEdit === false) {
-      this.getInmuebleSolo();
-    }
-  }
-
   guardar() {
     this.inmuebleSoloForm.value.id = this.id;
     this.inmuebleSoloForm.value.ubication = {
@@ -189,9 +168,6 @@ export class ListarInmuebleSoloComponent implements OnInit {
     this.inmuebleSoloForm.value.priceDiscount = this.priceDiscount;
     this.inmuebleSoloForm.value.priceAdmon = this.priceAdmon;
     this.inmuebleSoloForm.value.pricePolicy = this.pricePolicy;
-
-    console.log(this.inmuebleSoloForm.value);
-    
     
     this.inmuebleServices.actualizar(this.inmuebleSoloForm.value).subscribe(() => {
       // Mostrar el mensaje de éxito
@@ -214,5 +190,28 @@ export class ListarInmuebleSoloComponent implements OnInit {
         this.router.navigateByUrl('/buildings/listar');
       });
     }
+  }
+
+  private construirFormularioInmuebleSolo() {
+    this.inmuebleSoloForm = this.formBuilder.group({
+      type            : ['', [Validators.required]],
+      totalArea       : ['', [Validators.required]],
+      builtArea       : ['', [Validators.required]],
+      antiqueId       : ['', Validators.required],
+      levelId         : ['', [Validators.required]],
+      ubication       : ['', Validators.required],
+      address         : ['', Validators.required],
+      rooms           : ['', [Validators.required]],
+      office          : [''],
+      bathrooms       : ['', [Validators.required]],
+      garages         : [''],
+      floors          : ['', [Validators.required]],
+      price           : ['', [Validators.required]],
+      priceDiscount   : [''],
+      priceAdmon      : [''],
+      pricePolicy     : [''],
+      imgCover        : ['', Validators.required],
+      descripcion     : ['', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]]
+    });
   }
 }

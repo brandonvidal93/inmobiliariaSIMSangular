@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpinnerComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
   }
-
 }
